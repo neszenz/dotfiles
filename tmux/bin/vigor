@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+if $(tmux new-session -Ad -s vigor); then
+    tmux send-keys -t vigor:0.0 "clear; uwufetch" ENTER
+fi
+
+tmux -2 attach-session -t vigor

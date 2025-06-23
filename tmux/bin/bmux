@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+if tmux new-session -d -s "$1"; then
+    tmux splitw -v "btop -p 1"
+    tmux splitw -h "btop -p 2"
+    tmux select-pane -t 0
+fi
+
+tmux -2 attach-session -t "$1"

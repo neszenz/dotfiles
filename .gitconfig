@@ -1,0 +1,14 @@
+[user]
+	email = tobias.newe@t-online.de
+	name = Tobias Newe
+
+[alias]
+	stat = status -s
+	logsome = log --graph --oneline
+	logone = logsome -n 1
+	logtwo = logsome -n 2
+	logsix = logsome -n 6
+	logten = logsome -n 10
+        logall = logsome --all
+[init]
+	defaultBranch = main
