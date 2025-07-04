@@ -1,7 +1,6 @@
 alias g=git
 alias gg="nvim -c G -c bw1"
 alias t=tmux
-alias tn='tmux new-session -A -s'
 alias v=nvim
 
 alias _ls="/usr/bin/env ls"
