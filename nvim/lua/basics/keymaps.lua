@@ -10,13 +10,15 @@ vim.keymap.set('n', '<leader>gD', ':Git diff --staged<CR>_', {})
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
 vim.keymap.set('n', '<C-h>', '<C-w>h', {})
 vim.keymap.set('n', '<C-j>', '<C-w>j', {})
 vim.keymap.set('n', '<C-k>', '<C-w>k', {})
 vim.keymap.set('n', '<C-l>', '<C-w>l', {})
-vim.keymap.set('n', '', '<C-w>|', {})
-vim.keymap.set('n', '<C-->', '<C-w>_', {})
-vim.keymap.set('n', '<C-=>', '<C-w>=', {})
+vim.keymap.set('n', '<Up>', '5', {})
+vim.keymap.set('n', '<Down>', '5', {})
+vim.keymap.set('n', '<Left>', '10zh', {})
+vim.keymap.set('n', '<Right>', '10zl', {})
 
 -- Keeping it in center
 vim.keymap.set('n', '<C-d>', function ()
