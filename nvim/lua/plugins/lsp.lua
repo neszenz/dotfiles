@@ -29,34 +29,35 @@ return {
         }
     },
     config = function()
-        -- [[ Configure LSP ]]
-        --  This function gets run when an LSP connects to a particular buffer.
-        local on_attach = function(_, bufnr)
-            -- Here we create a function that lets us more easily define mappings specific
-            -- for LSP related items. It sets the mode, buffer and description for us each time.
-            local nmap = function(keys, func, desc)
-                if desc then
-                    desc = 'LSP: ' .. desc
+        vim.api.nvim_create_autocmd('LspAttach', {
+            group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+            callback = function(event)
+                -- In this case, we create a function that lets us more easily define mappings specific
+                -- for LSP related items. It sets the mode, buffer and description for us each time.
+                local map = function(keys, func, desc, mode)
+                    mode = mode or 'n'
+                    vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
                 end
 
-                vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-            end
+                map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
+                map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+                map('grr', vim.lsp.buf.references, '[G]oto [R]eferences')
+                map('gri', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+                map('grt', vim.lsp.buf.type_definition, '[G]oto [T]ype Definition')
+                map('grc', vim.lsp.buf.incoming_calls, '[G]oto Incoming [C]alls')
+                map('grd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+                map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+                map('gO', vim.lsp.buf.document_symbol, 'Open Document Symbols')
 
-            -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-            -- nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-            -- nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-            -- nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-            -- nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+                local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-            -- See `:help K` for why this keymap
-            nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-            -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-            -- Create a command `:Format` local to the LSP buffer
-            vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-                vim.lsp.buf.format()
-            end, { desc = 'Format current buffer with LSP' })
-        end
+                if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
+                    map('<leader>th', function()
+                        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+                    end, '[T]oggle Inlay [H]ints')
+                end
+            end,
+        })
 
         -- Enable the following language servers
         --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -95,7 +96,7 @@ return {
         }
 
         vim.lsp.config['clangd'] = {
-            cmd = {'clangd', '--header-insertion=never', '--query-driver=/home/developer/sdk/sysroots/x86_64-nucleos_sdk-linux/usr/bin/arm-nucleos-linux-gnueabi/arm-nucleos-linux-gnueabi-g++'},
+            cmd = { 'clangd', '--header-insertion=never', '--query-driver=/home/developer/sdk/sysroots/x86_64-nucleos_sdk-linux/usr/bin/arm-nucleos-linux-gnueabi/arm-nucleos-linux-gnueabi-g++' },
             filetypes = { 'c', 'cpp' },
         }
         -- mason_lspconfig.setup_handlers {
