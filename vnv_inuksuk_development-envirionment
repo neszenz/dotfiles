@@ -1,0 +1,6 @@
+#!/bin/bash
+cd core-logic/
+if tmux new -s vim -d; then
+    tmux send-keys -t vim:0.0 nvim ENTER
+fi
+tmux new -A -s vigor 'bmuxify && source ~/sdk/environment-setup-cortexa7t2hf-neon-nucleos-linux-gnueabi && exec zsh'
