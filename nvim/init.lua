@@ -1,3 +1,6 @@
+local config_support_range = vim.version.range("0.11")
+assert(config_support_range:has(vim.version()), "config does not support version")
+
 require("basics")
 
 -- Install package manager lazy.nvim
