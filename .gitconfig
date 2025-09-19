@@ -1,3 +1,6 @@
+[core]
+    whitespace = trailing-space
+
 [user]
 	email = tobias.newe@t-online.de
 	name = Tobias Newe
@@ -12,3 +15,16 @@
         logall = logsome --all
 [init]
 	defaultBranch = main
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = version:refname
+
+[pull]
+    rebase = true
+
+[rerere]
+    enalbed = true
+    autoUpdate = true
