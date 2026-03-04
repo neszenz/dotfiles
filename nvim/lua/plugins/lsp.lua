@@ -48,6 +48,10 @@ return {
                 map('grd', vim.lsp.buf.definition, '[G]oto [D]efinition')
                 map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
                 map('gO', vim.lsp.buf.document_symbol, 'Open Document Symbols')
+                map('grh', function()
+                    vim.lsp.buf.clear_references()
+                    vim.lsp.buf.document_highlight()
+                end, '[H]ighlight document symbol')
 
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
 
