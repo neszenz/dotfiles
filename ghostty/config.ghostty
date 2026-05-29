@@ -1,0 +1,12 @@
+theme = Cobalt Next Dark
+
+keybind = global:command+enter=toggle_quick_terminal
+
+background-opacity = 0.5
+background-blur = 20
+macos-titlebar-style = tabs
+quick-terminal-size = 55%, 95%
+quick-terminal-animation-duration = 0.1
+
+initial-window = false
+auto-update = check
