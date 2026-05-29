@@ -84,7 +84,7 @@ local function exec_vaction(action_offset, mode)
                     print(header)
                     io.popen(line)
                 elseif mode == 1 then
-                    local cmd = "echo '"..header.."' && "..line
+                    local cmd = "echo " .. vim.fn.shellescape(header) .. " && " .. line
                     vim.cmd(":term "..cmd)
                     vim.cmd(":startinsert");
                 elseif mode == 2 then
