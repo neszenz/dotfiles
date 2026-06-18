@@ -2,7 +2,7 @@
     whitespace = trailing-space
 
 [user]
-	email = tobias.newe@t-online.de
+	email = git@neszenz.dev
 	name = Tobias Newe
 
 [alias]
