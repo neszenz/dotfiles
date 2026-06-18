@@ -24,6 +24,7 @@ setopt appendhistory autocd extendedglob
 
 export KEYTIMEOUT=1 # o.1 seconds delay after <esc>
 export EDITOR=nvim
+export PATH="$HOME/.local/bin:$PATH"
 
 source /etc/profile
 eval "$(zoxide init --cmd cd zsh)"
@@ -39,7 +40,6 @@ fi
 
 . $(dirname $0)/aliases.sh
 
-export PATH="$HOME/.local/bin:$PATH"
 if [ -z "$IN_NIX_SHELL" ]; then
     export PATH="$HOME/.nix-profile/bin:$PATH"
 fi
