@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Auto-save/restore folds + cursor per file via view files
 -- TODO(plugin phase): guard these to real file buffers (buftype == '') and
 -- exclude noisy filetypes; saved 'folds' store foldmethod/foldexpr and can
--- clash with treesitter folding once it's enabled. See TODO.md.
+-- clash with treesitter folding (now enabled). See README.md roadmap.
 vim.opt.viewoptions = 'cursor,folds'
 vim.cmd [[autocmd BufWinEnter ?* silent! loadview]]
 vim.cmd [[autocmd BufWinLeave ?* mkview]]
