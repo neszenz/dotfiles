@@ -13,6 +13,8 @@ reference while the rewrite is in progress.
   `tree-sitter build`. Without it only the bundled parsers work
   (`c lua vim vimdoc markdown markdown_inline query`).
 - A Nerd Font — for `mini.icons` glyphs.
+- (optional) `fzf`, `fd`, `ripgrep` for optimized Telescope
+- (optional) `python-neovim` Support for python-based plugins
 
 ## Layout
 

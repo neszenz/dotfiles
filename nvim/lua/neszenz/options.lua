@@ -9,7 +9,7 @@ vim.opt.wrap = false             -- toggle on temporarily with :set wrap
 vim.opt.linebreak = true         -- when wrapped, break at word boundaries
 vim.opt.breakindent = true       -- when wrapped, keep the indent
 vim.opt.smoothscroll = true      -- when wrapped, scroll by screen line not buffer line
-vim.opt.winborder = 'rounded'
+vim.opt.winborder = 'none'
 
 -- Search
 vim.opt.hlsearch = true

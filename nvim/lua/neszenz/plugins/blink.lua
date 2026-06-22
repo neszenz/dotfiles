@@ -12,7 +12,7 @@ require('blink.cmp').setup({
     },
     completion = {
         -- never pop up while typing; only open via <C-x><C-m>
-        trigger = { show_on_keyword = false, show_on_trigger_character = false },
+        trigger = { show_on_keyword = false, show_on_trigger_character = true },
         documentation = { auto_show = true },  -- show docs for the selected item
     },
     sources = {
@@ -22,4 +22,4 @@ require('blink.cmp').setup({
 
 -- blink handles its keys internally and doesn't support a 2-key chord in its
 -- keymap table, so bind the manual trigger directly (matches old cmp.complete()).
-vim.keymap.set('i', '<C-x><C-m>', function() require('blink.cmp').show() end, { desc = 'Trigger completion' })
+vim.keymap.set('i', '<C-x><C-m>', function() require('blink.cmp').show() end)

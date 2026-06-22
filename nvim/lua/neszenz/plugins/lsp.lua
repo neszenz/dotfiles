@@ -7,8 +7,7 @@ vim.pack.add({
     { src = 'https://github.com/j-hui/fidget.nvim', version = 'v2.0.0'},
 })
 
-local fidget = require('fidget')
-fidget.setup {}
+require('fidget').setup {}
 
 -- Per-server overrides, merged onto lspconfig's defaults
 vim.lsp.config('clangd', {
