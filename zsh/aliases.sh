@@ -5,8 +5,8 @@ alias v=nvim
 
 alias _ls="/usr/bin/env ls"
 alias ls='eza'
-alias ll='eza -lF'
-alias la='eza -lF -a'
+alias ll='eza -l -F auto'
+alias la='eza -la -F auto'
 alias tree='eza --tree'
 
 alias _cat="/usr/bin/env cat"
