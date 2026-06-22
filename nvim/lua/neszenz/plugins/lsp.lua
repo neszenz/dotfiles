@@ -4,12 +4,20 @@
 -- `enable` is lazy, so a missing binary only warns when you open that filetype.
 vim.pack.add({
     { src = 'https://github.com/neovim/nvim-lspconfig', version = 'v2.10.0' },
+    { src = 'https://github.com/j-hui/fidget.nvim', version = 'v2.0.0'},
 })
+
+local fidget = require('fidget')
+fidget.setup {}
 
 -- Per-server overrides, merged onto lspconfig's defaults
 vim.lsp.config('clangd', {
-    cmd = { 'clangd', '--header-insertion=never' },
-    -- add '--query-driver=/path/to/cross-gcc' here when needed
+    cmd = {
+        'clangd',
+        '--header-insertion=never'
+        -- Add for cross-SDK '--query-driver=/path/to/cross-g++'
+    },
+    filetypes = { 'c', 'cpp' },
 })
 
 vim.lsp.config('lua_ls', {
