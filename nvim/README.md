@@ -74,10 +74,9 @@ nvim-pack-lock.json         vim.pack lockfile — committed, pins exact revs
       `vim` undefined). Now configured directly in `lsp.lua`: `diagnostics.globals = { 'vim' }`
       + `workspace.library = { $VIMRUNTIME }`. Broaden the library to
       `nvim_get_runtime_file('lua', true)` if you want plugin-module resolution too.
-- [ ] **`mkview` / `loadview` autocmds** — guard to real file buffers
-      (`buftype == ''`) and exclude noisy filetypes (gitcommit, help, panels).
-      Stale view files may carry an old `foldmethod` now that treesitter folding is
-      on; clear `~/.local/state/nvim/view/` once if folds misbehave.
+- [x] **`mkview` / `loadview`** — guarded to real named file buffers (`buftype == ''`,
+      excluding gitcommit/gitrebase/oil), and `viewoptions` dropped `folds` so saved
+      views no longer override treesitter folding. (Existing stale views were cleared.)
 - [x] **treesitter folding** — `foldmethod=expr`, `foldexpr=v:lua.vim.treesitter.foldexpr()`,
       `foldlevelstart=99` in `plugins/treesitter.lua`.
 - [x] **fugitive maps** — restored in `plugins/fugitive.lua` (`<leader>gb` blame

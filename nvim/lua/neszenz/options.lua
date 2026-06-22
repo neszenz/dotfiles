@@ -50,11 +50,25 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     pattern = '*',
 })
 
--- Auto-save/restore folds + cursor per file via view files
--- TODO(plugin phase): guard these to real file buffers (buftype == '') and
--- exclude noisy filetypes; saved 'folds' store foldmethod/foldexpr and can
--- clash with treesitter folding (now enabled). See README.md roadmap.
-vim.opt.viewoptions = 'cursor,folds'
-vim.cmd [[autocmd BufWinEnter ?* silent! loadview]]
-vim.cmd [[autocmd BufWinLeave ?* mkview]]
+-- Auto-save/restore cursor per file via view files. 'folds' is excluded on
+-- purpose so saved views can't override treesitter's foldmethod/foldexpr.
+vim.opt.viewoptions = 'cursor'
+
+-- Only for real, named file buffers (skip terminals, help, oil, git buffers, ...)
+local view_ignore_ft = { gitcommit = true, gitrebase = true, oil = true }
+local function view_eligible(buf)
+    return vim.bo[buf].buftype == ''
+        and not view_ignore_ft[vim.bo[buf].filetype]
+        and vim.api.nvim_buf_get_name(buf) ~= ''
+end
+
+local view_group = vim.api.nvim_create_augroup('RememberView', { clear = true })
+vim.api.nvim_create_autocmd('BufWinEnter', {
+    group = view_group,
+    callback = function(ev) if view_eligible(ev.buf) then vim.cmd('silent! loadview') end end,
+})
+vim.api.nvim_create_autocmd('BufWinLeave', {
+    group = view_group,
+    callback = function(ev) if view_eligible(ev.buf) then vim.cmd('silent! mkview') end end,
+})
 
