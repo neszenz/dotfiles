@@ -55,6 +55,7 @@ nvim-pack-lock.json         vim.pack lockfile — committed, pins exact revs
 | `tmux.lua` | tmux.nvim | seamless vim/tmux pane nav (`C-hjkl`) + resize |
 | `colorscheme.lua` | onedark.nvim | colorscheme (`darker`) |
 | `statusline.lua` | mini.statusline | minimal statusline (reuses mini.icons) |
+| `undotree.lua` | undotree | visualize undo history (`<leader>u`) |
 
 ## Roadmap
 
