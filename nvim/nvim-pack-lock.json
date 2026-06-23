@@ -29,6 +29,11 @@
       "src": "https://github.com/echasnovski/mini.icons",
       "version": "'v0.17.0'"
     },
+    "mini.statusline": {
+      "rev": "b5547f44560dae3ccd81f914256fa6f705837022",
+      "src": "https://github.com/echasnovski/mini.statusline",
+      "version": "'v0.18.0'"
+    },
     "nvim-lspconfig": {
       "rev": "229b79051b380377664edc4cbd534930154921a1",
       "src": "https://github.com/neovim/nvim-lspconfig",

@@ -26,6 +26,3 @@ vim.keymap.set('n', '<leader>sw', function() builtin.grep_string({ search = vim.
 vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Telescope live_grep' })
 vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = 'Telescope diagnostics' })
 vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Telescope resume' })
-
--- Enable telescope fzf native if installed
-pcall(require('telescope').load_extension, 'fzf')
